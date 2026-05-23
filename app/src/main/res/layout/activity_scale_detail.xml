@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/chord_screen_background"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="22dp"
+        android:paddingTop="38dp"
+        android:paddingEnd="22dp"
+        android:paddingBottom="28dp">
+
+        <Button
+            android:id="@+id/backToScaleListButton"
+            android:layout_width="104dp"
+            android:layout_height="44dp"
+            android:background="@drawable/chord_filter_pill_background"
+            android:backgroundTint="@color/chord_soft_green"
+            android:text="← Back"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/chord_card_background"
+            android:orientation="vertical"
+            android:padding="22dp">
+
+            <TextView
+                android:id="@+id/detailScaleTitleTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/chord_dark_teal"
+                android:textSize="32sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detailScaleTypeTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/chord_level_badge_background"
+                android:gravity="center"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:textColor="@color/chord_dark_teal"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <com.example.chordlab.common.view.FretboardView
+                android:id="@+id/detailScaleFretboardView"
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/chord_diagram_background" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                android:text="Scale Notes"
+                android:textColor="@color/chord_dark_teal"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detailScaleNotesTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="#5C6B67"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:text="Interval Formula"
+                android:textColor="@color/chord_dark_teal"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/detailScaleFormulaTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="#5C6B67"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/detailScaleRatingTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:textColor="@color/chord_orange"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/detailScaleTipTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:background="@drawable/chord_filter_pill_background"
+                android:padding="18dp"
+                android:textColor="@color/chord_dark_teal"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/detailScaleFavoriteButton"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:layout_marginTop="22dp"
+                android:background="@drawable/primary_button_background"
+                android:backgroundTint="@color/chord_teal"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="17sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

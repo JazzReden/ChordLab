@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ChordLab</string>
+    <string name="scale_favorite_content_description">Toggle favorite scale</string>
+    <string name="scale_rating_content_description">Tap to rate this scale</string>
+    <string name="profile_photo_content_description">Profile photo</string>
+    <string name="open_profile">Open profile</string>
+    <string name="edit_display_name">Edit display name</string>
+    <string name="edit_bio">Edit bio</string>
+    <string name="bio_placeholder">Tell us a little about yourself...</string>
+    <string name="about_chordlab_text">ChordLab is a beginner-friendly guitar learning app. Learn chords, scales, and more — one step at a time.</string>
+    <string name="app_version_label">Version %1$s</string>
+</resources>

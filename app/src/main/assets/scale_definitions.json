@@ -1,0 +1,58 @@
+[
+  {
+    "type": "Minor Pentatonic",
+    "shortName": "Min Pentatonic",
+    "intervals": [0, 3, 5, 7, 10],
+    "formula": "1 - b3 - 4 - 5 - b7",
+    "difficulty": "BEGINNER",
+    "tip": "Start slowly and say the root note out loud each time you land on it."
+  },
+  {
+    "type": "Ionian / Major Scale",
+    "shortName": "Major Scale",
+    "intervals": [0, 2, 4, 5, 7, 9, 11],
+    "formula": "W - W - H - W - W - W - H",
+    "difficulty": "BEGINNER",
+    "tip": "This is the happy major sound. Practice going up and down with clean timing."
+  },
+  {
+    "type": "Dorian",
+    "shortName": "Dorian",
+    "intervals": [0, 2, 3, 5, 7, 9, 10],
+    "formula": "1 - 2 - b3 - 4 - 5 - 6 - b7",
+    "difficulty": "ADVANCED",
+    "tip": "Dorian sounds minor but brighter. Great for funk and melodic soloing."
+  },
+  {
+    "type": "Phrygian",
+    "shortName": "Phrygian",
+    "intervals": [0, 1, 3, 5, 7, 8, 10],
+    "formula": "1 - b2 - b3 - 4 - 5 - b6 - b7",
+    "difficulty": "ADVANCED",
+    "tip": "The flat 2 gives a dark Spanish flavor. Land on the root often."
+  },
+  {
+    "type": "Locrian",
+    "shortName": "Locrian",
+    "intervals": [0, 1, 3, 5, 6, 8, 10],
+    "formula": "1 - b2 - b3 - 4 - b5 - b6 - b7",
+    "difficulty": "ADVANCED",
+    "tip": "Locrian is unstable because of the flat 5. Use it sparingly over minor chords."
+  },
+  {
+    "type": "Diminished",
+    "shortName": "Diminished",
+    "intervals": [0, 2, 3, 5, 6, 8, 9, 11],
+    "formula": "1 - 2 - b3 - 4 - b5 - b6 - 6 - 7",
+    "difficulty": "ADVANCED",
+    "tip": "Whole-half diminished fits tense passages. Practice in short bursts."
+  },
+  {
+    "type": "Blues Scale",
+    "shortName": "Blues Scale",
+    "intervals": [0, 3, 5, 6, 7, 10],
+    "formula": "1 - b3 - 4 - b5 - 5 - b7",
+    "difficulty": "ADVANCED",
+    "tip": "The extra blues note adds tension. Use it slowly before trying faster licks."
+  }
+]

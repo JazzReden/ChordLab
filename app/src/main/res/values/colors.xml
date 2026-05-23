@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="chord_dark_teal">#14565A</color>
+    <color name="chord_teal">#129486</color>
+    <color name="chord_teal_dark">#0B756C</color>
+    <color name="chord_choice_bg">#EFFFF8</color>
+    <color name="chord_soft_green">#C8F5E9</color>
+    <color name="chord_mint">#DFFFF2</color>
+    <color name="chord_card">#F8FFFC</color>
+    <color name="chord_orange">#F59E0B</color>
+</resources>

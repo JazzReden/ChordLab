@@ -1,0 +1,17 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.ChordLab" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/chord_teal</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/chord_soft_green</item>
+        <item name="colorOnSecondary">@color/chord_dark_teal</item>
+        <item name="colorTertiary">@color/chord_teal_dark</item>
+        <item name="colorAccent">@color/chord_teal</item>
+        <item name="android:colorAccent">@color/chord_teal</item>
+        <item name="android:statusBarColor">@color/chord_mint</item>
+        <item name="android:navigationBarColor">@color/chord_mint</item>
+        <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="Theme.ChordLab" parent="Base.Theme.ChordLab" />
+</resources>

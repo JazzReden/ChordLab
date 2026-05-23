@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="chord_filter_height">44dp</dimen>
+    <dimen name="scale_root_width">64dp</dimen>
+</resources>
