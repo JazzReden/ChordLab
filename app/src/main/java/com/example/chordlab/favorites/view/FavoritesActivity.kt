@@ -1,4 +1,4 @@
-package com.example.chordlab.favorites
+package com.example.chordlab.favorites.view
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,21 +15,23 @@ import com.example.chordlab.chordlibrary.model.GuitarChord
 import com.example.chordlab.chordlibrary.view.ChordAdapter
 import com.example.chordlab.chordlibrary.view.ChordDetailActivity
 import com.example.chordlab.dashboard.view.DashboardActivity
+import com.example.chordlab.favorites.model.FavoritesRepository
+import com.example.chordlab.favorites.presenter.FavoritesContract
+import com.example.chordlab.favorites.presenter.FavoritesPresenter
 import com.example.chordlab.scalelibrary.model.GuitarScale
 import com.example.chordlab.scalelibrary.model.ScalePreferenceStore
 import com.example.chordlab.scalelibrary.model.ScaleRepository
 import com.example.chordlab.scalelibrary.view.ScaleAdapter
 import com.example.chordlab.scalelibrary.view.ScaleDetailActivity
 
-class FavoritesActivity : AppCompatActivity() {
+class FavoritesActivity : AppCompatActivity(), FavoritesContract.View {
 
-    private lateinit var favoriteChordStore: FavoriteChordStore
-    private lateinit var scalePreferenceStore: ScalePreferenceStore
-    private lateinit var chordRepository: ChordRepository
-    private lateinit var scaleRepository: ScaleRepository
     private lateinit var emptyFavoritesTextView: TextView
     private lateinit var chordAdapter: ChordAdapter
     private lateinit var scaleAdapter: ScaleAdapter
+    private lateinit var presenter: FavoritesContract.Presenter
+    private lateinit var favoriteChordStore: FavoriteChordStore
+    private lateinit var scalePreferenceStore: ScalePreferenceStore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,31 +39,20 @@ class FavoritesActivity : AppCompatActivity() {
 
         favoriteChordStore = FavoriteChordStore(this)
         scalePreferenceStore = ScalePreferenceStore(this)
-        chordRepository = ChordRepository()
-        scaleRepository = ScaleRepository(this)
 
         emptyFavoritesTextView = findViewById(R.id.emptyFavoritesTextView)
 
         chordAdapter = ChordAdapter(
             favoriteChordStore = favoriteChordStore,
-            onChordClick = { openChordDetail(it) },
-            onFavoriteClick = {
-                favoriteChordStore.toggleFavorite(it.chordName)
-                refreshFavorites()
-            }
+            onChordClick = { presenter.selectChord(it) },
+            onFavoriteClick = { presenter.toggleChordFavorite(it) }
         )
 
         scaleAdapter = ScaleAdapter(
             preferenceStore = scalePreferenceStore,
-            onScaleClick = { openScaleDetail(it) },
-            onFavoriteClick = {
-                scalePreferenceStore.toggleFavorite(it.scaleName)
-                refreshFavorites()
-            },
-            onRatingClick = { scale, rating ->
-                scalePreferenceStore.saveRating(scale.scaleName, rating)
-                refreshFavorites()
-            }
+            onScaleClick = { presenter.selectScale(it) },
+            onFavoriteClick = { presenter.toggleScaleFavorite(it) },
+            onRatingClick = { scale, rating -> presenter.rateScale(scale, rating) }
         )
 
         findViewById<RecyclerView>(R.id.favoriteChordsRecyclerView).apply {
@@ -81,48 +72,49 @@ class FavoritesActivity : AppCompatActivity() {
             finish()
         }
 
-        refreshFavorites()
+        val favoritesRepository = FavoritesRepository(
+            chordRepository = ChordRepository(),
+            favoriteChordStore = favoriteChordStore,
+            scaleRepository = ScaleRepository(this),
+            scalePreferenceStore = scalePreferenceStore
+        )
+        presenter = FavoritesPresenter(this, favoritesRepository)
+        presenter.loadFavorites()
     }
 
     override fun onResume() {
         super.onResume()
-        if (::favoriteChordStore.isInitialized) {
-            refreshFavorites()
+        if (::presenter.isInitialized) {
+            presenter.loadFavorites()
         }
     }
 
-    private fun refreshFavorites() {
-        val favoriteChords = loadFavoriteChords()
-        val favoriteScales = loadFavoriteScales()
-
-        chordAdapter.submitChords(favoriteChords)
-        scaleAdapter.submitScales(favoriteScales)
-
-        val hasFavorites = favoriteChords.isNotEmpty() || favoriteScales.isNotEmpty()
-        emptyFavoritesTextView.visibility = if (hasFavorites) View.GONE else View.VISIBLE
+    override fun showFavoriteChords(chords: List<GuitarChord>) {
+        chordAdapter.submitChords(chords)
     }
 
-    private fun loadFavoriteChords(): List<GuitarChord> {
-        val names = favoriteChordStore.getFavoriteNames().toSet()
-        return chordRepository.getChords().filter { names.contains(it.chordName) }
+    override fun showFavoriteScales(scales: List<GuitarScale>) {
+        scaleAdapter.submitScales(scales)
     }
 
-    private fun loadFavoriteScales(): List<GuitarScale> {
-        val names = scalePreferenceStore.getFavoriteNames().toSet()
-        return scaleRepository.getRootNotes()
-            .flatMap { scaleRepository.getScales(it) }
-            .filter { names.contains(it.scaleName) }
+    override fun showEmptyState(isEmpty: Boolean) {
+        emptyFavoritesTextView.visibility = if (isEmpty) View.VISIBLE else View.GONE
     }
 
-    private fun openChordDetail(chord: GuitarChord) {
+    override fun openChordDetail(chordName: String) {
         val intent = Intent(this, ChordDetailActivity::class.java)
-        intent.putExtra(ChordDetailActivity.EXTRA_CHORD_NAME, chord.chordName)
+        intent.putExtra(ChordDetailActivity.EXTRA_CHORD_NAME, chordName)
         startActivity(intent)
     }
 
-    private fun openScaleDetail(scale: GuitarScale) {
+    override fun openScaleDetail(scaleName: String) {
         val intent = Intent(this, ScaleDetailActivity::class.java)
-        intent.putExtra(ScaleDetailActivity.EXTRA_SCALE_NAME, scale.scaleName)
+        intent.putExtra(ScaleDetailActivity.EXTRA_SCALE_NAME, scaleName)
         startActivity(intent)
+    }
+
+    override fun onDestroy() {
+        presenter.detachView()
+        super.onDestroy()
     }
 }

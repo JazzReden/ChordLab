@@ -13,7 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.chordlab.R
 import com.example.chordlab.profile.UserSession
 import com.example.chordlab.chordlibrary.view.ChordListActivity
-import com.example.chordlab.favorites.FavoritesActivity
+import com.example.chordlab.favorites.view.FavoritesActivity
 import com.example.chordlab.profile.ProfileActivity
 import com.example.chordlab.dashboard.model.DashboardItem
 import com.example.chordlab.dashboard.model.DashboardRepository
